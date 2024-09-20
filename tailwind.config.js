@@ -13,7 +13,8 @@ module.exports = {
         "successgreen": "#06D001",
         "darkGreen": "#059212",
         "yellowIshGreen": "#F3FF90",
-        "white":"#fffff5",
+        "white":"#ffffff",
+        // "white":"#fffff5",
       },
       fontFamily: {
         "sans": ["Inter", "sans-serif"],
