@@ -1,29 +1,28 @@
-import React,{useState} from 'react'
-import InputField from '../utilityComponents/InputField';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import Icon, { Icons } from '../../utilities/Icons';
+import InputField from '../utilityComponents/InputField';
 
-const Search = ({placeholder}) => {
-
-    const [searchField, setSearchField] = useState("");
-    return (
-			<View className="flex py-5 px-4 bg-firstPrimary">
-				<InputField
-					label={placeholder}
-					placeholder={placeholder}
-					value={searchField}
-					onChangeText={(text) => setSearchField(text)}
-					icon={
-						<Icon
-							type={Icons.EvilIcons}
-							size={30}
-							name="search"
-							color="gray"
-						></Icon>
-					}
-				/>
-			</View>
-		);
-}
+const Search = ({placeholder, navigation}) => {
+	const [searchField, setSearchField] = useState("");
+	return (
+		<View className="flex py-2 px-4 bg-firstprimary">
+			<InputField
+				label={placeholder}
+				placeholder={placeholder}
+				value={searchField}
+				onChangeText={(text) => setSearchField(text)}
+				icon={
+					<Icon
+						type={Icons.EvilIcons}
+						size={30}
+						name="search"
+						color="gray"
+					></Icon>
+				}
+			/>
+		</View>
+	);
+};
 
 export default Search

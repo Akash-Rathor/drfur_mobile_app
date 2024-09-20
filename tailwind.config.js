@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       colors: {
         "black": "#070712", //black
-        "firstPrimary":"#03346E", // darkest dark blue
+        "firstprimary":"#03346E", // darkest dark blue
         "primary": "#050C9C", // darkest blue
         "secondary": "#3572EF", // dark blue
         "tertiary": "#F2F2F2", // light blue
@@ -15,6 +15,10 @@ module.exports = {
         "yellowIshGreen": "#F3FF90",
         "white":"#ffffff",
         // "white":"#fffff5",
+      },
+      boxShadow: {
+        'custom-light': '0 4px 6px rgba(0, 0, 0, 0.1)',
+        'custom-dark': '0 10px 15px rgba(0, 0, 0, 0.5)',
       },
       fontFamily: {
         "sans": ["Inter", "sans-serif"],

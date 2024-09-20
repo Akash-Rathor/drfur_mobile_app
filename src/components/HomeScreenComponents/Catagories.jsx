@@ -1,12 +1,12 @@
 import React from "react";
-import {View, FlatList, Text, Image} from "react-native";
+import { FlatList, Image, Text, View } from "react-native";
 
 import Birds from "../../assets/images/birds.jpg";
-import Dogs from "../../assets/images/dog.jpg";
 import Cats from "../../assets/images/cat.jpg";
+import Cow from "../../assets/images/cow.jpg";
+import Dogs from "../../assets/images/dog.jpg";
 import Horses from "../../assets/images/horse.jpg";
 import Mix from "../../assets/images/mix.jpg";
-import Cow from "../../assets/images/cow.jpg";
 
 const data = [
 	{
@@ -48,7 +48,7 @@ const Item = ({item}) => (
 
 const Categories = () => {
 	return (
-		<View className="flex flex-col py-2 px-5 bg-firstPrimary rounded-b-xl">
+		<View className="flex flex-col py-2 px-5 bg-firstprimary rounded-b-xl">
 			<Text className="text-lg font-semibold text-white">Categories</Text>
 			<FlatList
 				data={data}

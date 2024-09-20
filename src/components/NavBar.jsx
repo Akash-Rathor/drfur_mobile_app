@@ -47,7 +47,7 @@ const NavBar = ({
 				{/* <View className="flex items-center justify-center"> */}
 				{title && (
 					<Text
-						className={`text-firstPrimary ${showBackButton ? "text-start" : "text-center"} p-2 ml-2 text-xl font-bold`}
+						className={`text-firstprimary ${showBackButton ? "text-start" : "text-center"} p-2 ml-2 text-xl font-bold`}
 					>
 						{title}
 					</Text>

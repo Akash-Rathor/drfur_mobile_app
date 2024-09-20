@@ -1,9 +1,9 @@
-import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import {Text, TouchableOpacity, View} from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
-import Icon, {Icons} from "../utilities/Icons";
+import Icon, { Icons } from "../utilities/Icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -44,7 +44,7 @@ const TabButton = (props) => {
 		>
 			{/* Line above the icon with rounded bottom */}
 			<View
-				className={`w-12 h-1.5 mb-2.5 ${focused ? "bg-firstPrimary border-b rounded-b-full" : "bg-transparent"}`}
+				className={`w-12 h-1.5 mb-2.5 ${focused ? "bg-firstprimary border-b rounded-b-full" : "bg-transparent"}`}
 			/>
 
 			{/* Icon */}
@@ -58,7 +58,7 @@ const TabButton = (props) => {
 
 			{/* Label */}
 			<Text
-				className={`text-xs ${focused ? "text-firstPrimary font-semibold" : "text-[#99999690]"}`}
+				className={`text-xs ${focused ? "text-firstprimary font-semibold" : "text-[#99999690]"}`}
 			>
 				{item.label}
 			</Text>
