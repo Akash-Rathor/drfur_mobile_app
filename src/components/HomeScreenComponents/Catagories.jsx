@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, Image, Text, View } from "react-native";
+import { FlatList, Image, Text, View,TouchableOpacity } from "react-native";
 
 import Birds from "../../assets/images/birds.jpg";
 import Cats from "../../assets/images/cat.jpg";
@@ -35,7 +35,7 @@ const data = [
 	},
 ];
 const Item = ({item}) => (
-	<View className="flex flex-col justify-center items-center space-y-1 p-2">
+	<TouchableOpacity className="flex flex-col justify-center items-center space-y-1 p-2">
 		<Image
 			source={item.image}
 			alt={item.title}
@@ -43,10 +43,10 @@ const Item = ({item}) => (
 			className="rounded-full border-2 border-gray-200"
 		/>
 		<Text className="text-center font-semibold text-white">{item.title}</Text>
-	</View>
+	</TouchableOpacity>
 );
 
-const Categories = () => {
+const Categories = ({ navigation }) => {
 	return (
 		<View className="flex flex-col py-2 px-5 bg-firstprimary rounded-b-xl">
 			<Text className="text-lg font-semibold text-white">Categories</Text>

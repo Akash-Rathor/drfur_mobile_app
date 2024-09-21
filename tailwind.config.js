@@ -12,7 +12,7 @@ module.exports = {
         "quaternary": "#A7E6FF", // lightest blue
         "successgreen": "#06D001",
         "darkGreen": "#059212",
-        "yellowIshGreen": "#F3FF90",
+        "yellowishGreen": "#F3FF90",
         "white":"#ffffff",
         // "white":"#fffff5",
       },
