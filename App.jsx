@@ -1,18 +1,22 @@
 import React from "react";
-import { SafeAreaView, StatusBar } from "react-native";
+import { Platform, SafeAreaView, StatusBar } from "react-native";
 import "react-native-gesture-handler";
-import { enableScreens } from "react-native-screens";
 import MainNavigation from "./src/routes/MainNavigation";
-
-enableScreens();
 
 const App = () => {
 
 	return (
-		<SafeAreaView style={{flex: 1}}>
-				<StatusBar animated={true} backgroundColor="#03346E" />
+		<>
+			<SafeAreaView style={{flex: 0, backgroundColor: "#03346E"}}/>
+			<SafeAreaView style={{flex: 1 , backgroundColor:"#fff"}} >
+				<StatusBar 
+					animated={true} 
+					backgroundColor="#03346E" 
+					barStyle={Platform.OS === 'ios' ? 'light-content' : 'default'} 
+				/>
 				<MainNavigation />
 			</SafeAreaView>
+		</>
 	);
 };
 

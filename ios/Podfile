@@ -1,5 +1,4 @@
 platform :ios, '15.0'  # Ensure correct iOS version
-use_modular_headers!   # Add this line
 
 require_relative '../node_modules/react-native/scripts/react_native_pods.rb'
 

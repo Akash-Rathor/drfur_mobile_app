@@ -6,7 +6,7 @@ import InputField from '../utilityComponents/InputField';
 const Search = ({placeholder, navigation}) => {
 	const [searchField, setSearchField] = useState("");
 	return (
-		<View className="flex py-2 px-4 bg-firstprimary">
+		<View className="flex py-3 px-4 bg-firstprimary">
 			<InputField
 				label={placeholder}
 				placeholder={placeholder}

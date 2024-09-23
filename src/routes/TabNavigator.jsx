@@ -53,7 +53,6 @@ const TabButton = (props) => {
 				type={item.type}
 				color={focused ? "#03346E" : "#99999690"}
 				size={24}
-				className="" // Adjust margin to add spacing between icon and text
 			/>
 
 			{/* Label */}
@@ -72,13 +71,14 @@ export default function TabNavigator() {
 			screenOptions={{
 				headerShown: false,
 				tabBarStyle: {
-					height: 60, // Increased height for the tab bar to fit everything
+					height: 60,
 					position: "absolute",
-					justifyContent: "center",
+					justifyContent: "space-between",
 					alignItems: "center",
 					zIndex: 1000,
 				},
 			}}
+			initialRouteName="Home"
 		>
 			{Tabs.map((item, index) => (
 				<Tab.Screen
