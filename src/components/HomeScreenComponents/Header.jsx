@@ -13,8 +13,8 @@ const navigateToWallet = () => {
 
 const Header = ({navigation}) => {
 	return (
-		<View className="flex flex-row px-2 justify-between items-center bg-firstprimary h-10 opacity-95 py-1">
-			<View className="flex flex-row justify-center items-center space-x-3">
+		<View className="flex flex-row px-2 justify-between items-center bg-firstprimary h-10 py-1">
+			<View className="flex flex-row justify-center items-center space-x-3 mt-2">
 				<Icon
 					type={Icons.Entypo}
 					name="location-pin"
@@ -29,12 +29,12 @@ const Header = ({navigation}) => {
 					<View className="h-0.5 w-full bg-white"></View>
 				</TouchableOpacity>
 			</View>
-			<TouchableOpacity
+			{/* <TouchableOpacity
 				onPress={navigateToWallet}
-				className="flex flex-row justify-center items-center space-x-2 border-2 rounded-md border-white p-0.5"
+				className="flex flex-row justify-center items-center space-x-2 border-white mt-2"
 			>
-				<Icon type={Icons.Entypo} name="wallet" color="white" size={24} />
-			</TouchableOpacity>
+				<Icon type={Icons.Entypo} name="wallet" color="white" size={28} />
+			</TouchableOpacity> */}
 		</View>
 	);
 };

@@ -1,12 +1,12 @@
 import React from "react";
-import {Text, View, Image, TouchableOpacity} from "react-native";
-import Vet from "../../assets/images/vet.png";
-import Dog from "../../assets/images/dog.jpg";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 import Cat from "../../assets/images/cat.jpg";
+import Dog from "../../assets/images/dog.jpg";
 import Horse from "../../assets/images/horse.jpg";
+import Vet from "../../assets/images/vet.png";
 import GradientView from "../utilityComponents/GradientView";
 
-import Icon, {Icons} from "../../utilities/Icons";
+import Icon, { Icons } from "../../utilities/Icons";
 
 const Data = {
 	column1: [
@@ -30,8 +30,8 @@ const Data = {
 	column2: [
 		{
 			degree: "D.V.M.",
-			name: "Remington Montgomery",
-			location: "Dwarka sector 33",
+			name: "Remington asjdn",
+			location: "Dwarka sector-33",
 			ratings: "4.3/5",
 			status: "Offline",
 			image: Vet,
@@ -47,13 +47,19 @@ const Data = {
 	],
 };
 
-	const CardsColumn = ({ data }) => {
+const CardsColumn = ({ data, navigation }) => {
+		
+	const handlePress = (item) => {
+		navigation.navigate("Doctor", {item});
+	};
+
 		return (
-			<View className="flex flex-row justify-between items-center w-full mb-5">
+			<View className="flex flex-row justify-between items-center w-full mb-2">
 				{data.map((item, index) => (
 					<TouchableOpacity
 						key={index}
-						className="flex relative justify-center flex-col items-center w-40 h-auto rounded-lg  p-2"
+						className="flex relative justify-center flex-col items-center w-40 h-auto min-h-50 max-h-60 rounded-lg  p-2 overflow-scroll"
+						onPress={() => handlePress(item)}
 					>
 						<GradientView
 							from_color="rgb(0,0,0)"
@@ -69,23 +75,21 @@ const Data = {
 						<Image
 							source={item.image}
 							alt="Vet"
-							className="w-20 h-20 rounded-full"
+							className="w-20 h-20 rounded-full bg-white"
 						/>
-						<View className="flex flex-col justify-between items-center p-1">
-							<View className="flex flex-col space-x-1 justify-start items-center flex-wrap">
-								<Text className="font-bold text-white">{item.degree}</Text>
-								<Text className="text-white text-center font-semibold">
-									{item.name}
-								</Text>
+						<View className="flex flex-col justify-center items-start py-2">
+							<View className="flex flex-col space-x-1 justify-start items-start flex-wrap">
+								<Text className="font-bold text-white">{item.name}</Text>
+								<Text className="text-white">({item.degree})</Text>
 							</View>
-							<View className="flex flex-row self-start py-1">
+							<View className="flex flex-row self-start mt-4">
 								<Icon
 									type={Icons.Entypo}
 									name="location-pin"
 									color="#FFD700"
-									size={20}
+									size={16}
 								/>
-								<Text className="text-white ml-2 font-semibold">
+								<Text className="text-white font-normal ml-1 text-xs">
 									{item.location}
 								</Text>
 							</View>
@@ -94,9 +98,9 @@ const Data = {
 									type={Icons.Entypo}
 									name="star"
 									color="#FFD700"
-									size={20}
+									size={16}
 								/>
-								<Text className="text-wrap text-white ml-2 font-semibold">
+								<Text className="text-wrap text-white ml-1 font-normal text-xs">
 									{item.ratings}
 								</Text>
 							</View>
@@ -108,14 +112,14 @@ const Data = {
 	};
 
 
-const TopVets = ({navigation}) => {
+const TopVets = ({ navigation }) => {
 	return (
-		<View className="flex flex-col justify-center items-center space-y-2 w-full">
+		<View className="flex flex-col justify-center mb-2 items-center space-y-2 w-full">
 			<Text className="text-lg self-start font-semibold text-firstprimary mb-2">
 				Top vets in your city
 			</Text>
-			{<CardsColumn data={Data.column1} />}
-			{<CardsColumn data={Data.column2} />}
+			{<CardsColumn data={Data.column1} navigation={navigation} />}
+			{<CardsColumn data={Data.column2} navigation={navigation} />}
 		</View>
 	);
 };

@@ -33,7 +33,7 @@ const Data = {
 		},
 		{
 			title: "Pet Products",
-			desc: "Food, leash, toys, and everything your pet needs. ",
+			desc: "Food,toys and everything your pet needs. ",
 			image: Vet,
 			from_color: "rgb(46, 191, 51)",
 			to_color: "rgb(247, 248, 252)",
@@ -43,7 +43,7 @@ const Data = {
 
 const CardsColumn = ({data}) => {
 	return (
-		<View className="flex flex-row justify-between items-center px-2 w-full" style={styles.card}>
+		<View className="flex flex-row justify-between items-center w-full mb-2" style={styles.card}>
 			{data.map((item, index) => {
 				return (
 					<TouchableOpacity
@@ -56,7 +56,7 @@ const CardsColumn = ({data}) => {
 							index={index}
 							classname="absolute inset-0"
 						>
-							<View className="flex-1 flex-row items-center space-x-1 p-2">
+							<View className="flex-1 flex-row items-center space-x-1 px-1 py-2">
 								<View className="flex-1">
 									<Text className="text-white text-xs font-black">
 										{item.title}
@@ -79,16 +79,14 @@ const CardsColumn = ({data}) => {
 
 const Services = ({navigation}) => {
 	return (
-		<View className="flex flex-col justify-center items-center w-full">
+		<View className="flex flex-col justify-center items-center space-y-2 py-5 w-full">
 			<Text className="text-lg self-start font-semibold text-firstprimary mb-2">
 				Our Services
 			</Text>
-			<View className="flex flex-col justify-center items-center w-full">
+			{/* <View className="flex flex-col justify-center items-center w-full"> */}
 				{<CardsColumn data={Data.column1} />}
-				<View className='mt-2'>
-					{<CardsColumn data={Data.column2}/>}
-				</View>
-			</View>
+				<View className="mt-2">{<CardsColumn data={Data.column2} />}</View>
+			{/* </View> */}
 		</View>
 	);
 };

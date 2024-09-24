@@ -10,21 +10,23 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import Octicons from "react-native-vector-icons/Octicons";
 import Foundation from "react-native-vector-icons/Foundation";
+import Fontisto from "react-native-vector-icons/Fontisto";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
 export const Icons = {
-  MaterialCommunityIcons,
-  MaterialIcons,
-  Ionicons,
-  Feather,
-  FontAwesome,
-  FontAwesome5,
-  AntDesign,
-  Entypo,
-  SimpleLineIcons,
-  Octicons,
-  Foundation,
-  EvilIcons,
+	MaterialCommunityIcons,
+	MaterialIcons,
+	Ionicons,
+	Feather,
+	FontAwesome,
+	FontAwesome5,
+	AntDesign,
+	Entypo,
+	SimpleLineIcons,
+	Octicons,
+	Foundation,
+	EvilIcons,
+	Fontisto,
 };
 
 const Icon = ({ type, name, color, size = 24, style }) => {

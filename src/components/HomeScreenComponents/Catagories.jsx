@@ -48,7 +48,7 @@ const Item = ({item}) => (
 
 const Categories = ({ navigation }) => {
 	return (
-		<View className="flex flex-col py-2 px-5 bg-firstprimary rounded-b-3xl">
+		<View className="flex flex-col py-2 px-5 bg-firstprimary rounded-b-xl">
 			<Text className="text-lg font-semibold text-white">Categories</Text>
 			<FlatList
 				data={data}

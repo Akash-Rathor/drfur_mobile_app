@@ -1,5 +1,5 @@
 import React from "react";
-import { View, FlatList,Platform } from "react-native";
+import { View, FlatList, Platform } from "react-native";
 import NavBar from "../components/NavBar";
 import Header from "../components/HomeScreenComponents/Header";
 import Search from "../components/HomeScreenComponents/Search";
@@ -15,33 +15,33 @@ const BottomSpacing = () => {
 
 const sections = [
 	{
-		component: Catagories,
+		component: (props) => <Catagories {...props} />,
 	},
 	{
-		component: () => (
+		component: (props) => (
 			<View className="px-4">
-				<Banner />
+				<Banner {...props} />
 			</View>
 		),
 	},
 	{
-		component: () => (
-			<View className="px-8">
-				<TopVets />
+		component: (props) => (
+			<View className="px-4">
+				<TopVets {...props} />
 			</View>
 		),
 	},
 	{
-		component: () => (
+		component: (props) => (
 			<View className="px-4">
-				<Services />
+				<Services {...props} />
 			</View>
 		),
 	},
 	{
-		component: () => (
+		component: (props) => (
 			<View className="px-4">
-				<LastBanner />
+				<LastBanner {...props} />
 			</View>
 		),
 	},
@@ -64,10 +64,9 @@ const Home = ({ navigation }) => {
 			<Search placeholder="Search By vet name" navigation={navigation} />
 			<FlatList
 				data={sections}
-				renderItem={({item}) => <item.component navigation={navigation} />}
-				horizontal={false}
+				renderItem={({ item }) => <item.component navigation={navigation} />}
 				showsVerticalScrollIndicator={false}
-				style={{ marginBottom: Platform.OS ==='ios' ? "35%" : "20%"}}
+				style={{ marginBottom: Platform.OS === 'ios' ? "30%" : "15%" }}
 			/>
 		</View>
 	);

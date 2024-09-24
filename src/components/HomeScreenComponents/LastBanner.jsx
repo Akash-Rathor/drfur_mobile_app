@@ -12,9 +12,9 @@ const LastBanner = ({navigation}) => {
 				to_color="rgb(0,0,0)"
 				classname="rounded-lg"
 			/>
-			<View className="flex flex-row justify-center items-center w-full h-16 py-1 space-x-2">
+			<View className="flex flex-row justify-center items-center w-full h-8 space-x-2">
 				<View>
-					<Icon type={Icons.Entypo} name="trophy" color="white" size={36} />
+					<Icon type={Icons.Entypo} name="trophy" color="white" size={28} />
 				</View>
 				<View className="flex flex-col justify-center items-center text-center">
 					<Text className="text-white text-lg font-bold">

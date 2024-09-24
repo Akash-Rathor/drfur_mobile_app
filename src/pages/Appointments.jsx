@@ -6,7 +6,7 @@ import {
 	Platform,
 	TouchableOpacity,
 	Image,
-	Button,
+  Button,
 } from "react-native";
 import NavBar from "../components/NavBar";
 import {Swipeable} from "react-native-gesture-handler";
@@ -58,12 +58,12 @@ const NotificationCard = ({viewed, title, description, date, navigation}) => {
 							</Text>
 						</View>
 						<Text className="text-sm text-wrap">{description}</Text>
-						<TouchableOpacity
+						{/* <TouchableOpacity
 							className="flex justify-center items-center bg-firstprimary opacity-70 text-white w-12 h-6 rounded-md mt-1"
 							onPress={() => navigation.navigate("Profile")}
 						>
 							<Text className="text-sm text-white ">View</Text>
-						</TouchableOpacity>
+						</TouchableOpacity> */}
 					</View>
 				</View>
 			</View>
@@ -72,7 +72,7 @@ const NotificationCard = ({viewed, title, description, date, navigation}) => {
 	);
 };
 
-const Profile = ({navigation}) => {
+const Appointments = ({navigation}) => {
 	const [notifications, setNotifications] = useState([
 		{
 			title: "Appointment Reminder",
@@ -110,15 +110,34 @@ const Profile = ({navigation}) => {
 	return (
 		<>
 			<NavBar
-				title="Profile"
+				title="Upcoming Appointments"
 				bg_color_text="black"
 				navigation={navigation}
 				showBackButton={false}
-				isProfilePage={true}
 			/>
-			<View className="flex flex-col h-screen"></View>
+			<View className="flex flex-col h-screen">
+				<View className="flex flex-col bg-red-80 flex-1">
+					<FlatList
+						data={notifications}
+						renderItem={({item}) => (
+							<NotificationCard
+                viewed={item.viewed}
+                title={item.title}
+                description={item.description}
+                date={item.date}
+                navigation={navigation}
+							/>
+						)}
+						keyExtractor={(item, index) => index.toString()}
+						contentContainerStyle={{
+							paddingBottom: Platform.OS === "ios" ? "45%" : "15%",
+						}}
+						showsVerticalScrollIndicator={false}
+					/>
+				</View>
+			</View>
 		</>
 	);
 };
 
-export default Profile;
+export default Appointments;

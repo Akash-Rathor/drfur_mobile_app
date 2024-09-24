@@ -5,7 +5,7 @@ import Svg, { Defs, Rect, LinearGradient, Stop } from "react-native-svg";
 
 const Banner = ({ navigation }) => {
 	return (
-		<View className="flex flex-col py-5 mt-5">
+		<View className="flex flex-col py-4 mt-5">
 			<View className="flex flex-row justify-between items-center w-full h-28 py-1">
 				<Svg height="100%" width="100%" style={[StyleSheet.absoluteFill]}>
 					<Defs>
@@ -44,7 +44,7 @@ const Banner = ({ navigation }) => {
 					<Text className="text-white text-md">Popular Vet</Text>
 				</View>
 				<View className="flex flex-row justify-end mr-0.5">
-					<Image source={Vet} className="w-40 h-36 -mt-12" />
+					<Image source={Vet} className="w-40 h-36 -mt-12 bg-transparent" />
 				</View>
 			</View>
 		</View>

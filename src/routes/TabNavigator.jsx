@@ -1,33 +1,70 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View, Platform } from "react-native";
 import Home from "../pages/Home";
 import Profile from "../pages/Profile";
 import Icon, { Icons } from "../utilities/Icons";
+import Notifications from "../pages/Notifications";
+import Appointments from "../pages/Appointments";
+import ProductListing from "../pages/ProductListing";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = [
 	{
-		route: "Home",
-		label: "Home",
-		inActiveIconName: "home",
-		activeIconName: "home",
-		type: Icons.Entypo,
-		component: Home,
-	},
-	{
 		route: "Profile",
 		label: "Profile",
+		inActiveType: Icons.AntDesign,
 		inActiveIconName: "user",
+		activeType: Icons.FontAwesome,
 		activeIconName: "user",
-		type: Icons.FontAwesome,
 		component: Profile,
+		badge: false,
+	},
+	{
+		route: "Appointments",
+		label: "Appointments",
+		inActiveType: Icons.EvilIcons,
+		inActiveIconName: "calendar",
+		activeType: Icons.AntDesign,
+		activeIconName: "calendar",
+		component: Appointments,
+		badge: true,
+	},
+	{
+		route: "Home",
+		label: "Home",
+		inActiveType: Icons.AntDesign,
+		inActiveIconName: "home",
+		activeType: Icons.FontAwesome,
+		activeIconName: "home",
+		component: Home,
+		badge: false,
+	},
+	{
+		route: "Products",
+		label: "Products",
+		inActiveType: Icons.AntDesign,
+		inActiveIconName: "shoppingcart",
+		activeType: Icons.FontAwesome5,
+		activeIconName: "shopping-cart",
+		component: ProductListing,
+		badge: false,
+	},
+	{
+		route: "Notifications",
+		label: "Notifications",
+		inActiveType: Icons.AntDesign,
+		inActiveIconName: "bells",
+		activeType: Icons.Entypo,
+		activeIconName: "bell",
+		component: Notifications,
+		badge: true,
 	},
 ];
 
 const TabButton = (props) => {
-	const {item, onPress, accessibilityState} = props;
+	const { item, onPress, accessibilityState } = props;
 	const focused = accessibilityState.selected;
 
 	return (
@@ -36,31 +73,49 @@ const TabButton = (props) => {
 			onPress={onPress}
 			activeOpacity={1}
 			style={{
-				width: 80,
-				height: 56,
+				width: 72,
+				height: Platform.OS === "ios" ? 40 : 44,
 				alignItems: "center",
 				position: "relative",
 			}}
 		>
 			{/* Line above the icon with rounded bottom */}
 			<View
-				className={`w-12 h-1.5 mb-2.5 ${focused ? "bg-firstprimary border-b rounded-b-full" : "bg-transparent"}`}
+				className={`w-12 h-1.5 ${focused ? "bg-firstprimary border-b rounded-b-full opacity-80" : "bg-transparent"}`}
 			/>
 
 			{/* Icon */}
+			<View className="mt-1" />
+			{item.badge && (
+				<View
+					className={`flex justify-center items-center absolute ${focused ? "" : "top-2 right-5 bg-red-700"} rounded-full w-4 h-4 `}
+					style={{zIndex: 10}}
+				>
+					{!focused && (
+						<Text
+							className="text-white self-center text-center"
+							style={{fontSize: 10}}
+						>
+							9+
+						</Text>
+					)}
+				</View>
+			)}
 			<Icon
 				name={focused ? item.activeIconName : item.inActiveIconName}
-				type={item.type}
+				type={focused ? item.activeType : item.inActiveType}
 				color={focused ? "#03346E" : "#99999690"}
-				size={24}
+				size={20}
 			/>
 
-			{/* Label */}
-			<Text
-				className={`text-xs ${focused ? "text-firstprimary font-semibold" : "text-[#99999690]"}`}
-			>
-				{item.label}
-			</Text>
+
+				<Text
+					className={`${focused ? "text-firstprimary font-semibold opacity-80" : "text-[#999996]"}`}
+					style={{fontSize: 10}}
+				>
+					{item.label}
+				</Text>
+
 		</TouchableOpacity>
 	);
 };
@@ -68,17 +123,18 @@ const TabButton = (props) => {
 export default function TabNavigator() {
 	return (
 		<Tab.Navigator
+			initialRouteName="Home"
 			screenOptions={{
 				headerShown: false,
 				tabBarStyle: {
-					height: 60,
+					height: Platform.OS === "ios" ? 40 : 48,
 					position: "absolute",
 					justifyContent: "space-between",
 					alignItems: "center",
 					zIndex: 1000,
+					borderTopWidth: 0,
 				},
 			}}
-			initialRouteName="Home"
 		>
 			{Tabs.map((item, index) => (
 				<Tab.Screen
