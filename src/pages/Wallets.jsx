@@ -11,7 +11,7 @@ const Wallets = ({ navigation }) => {
 				navigation={navigation}
 				bg_color_text="black"
 				showBackButton={true}
-				goBackWhere="Profile"
+				goBackWhere="ProfileSettings"
 				showProfileButton={false}
 			/>
 		</View>

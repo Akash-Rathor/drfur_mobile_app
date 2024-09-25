@@ -9,6 +9,8 @@ import Home from "../pages/Home";
 import TabNavigator from "./TabNavigator";
 import Wallets from "../pages/Wallets";
 import Doctors from "../pages/Doctors";
+import EcommerceRoutes from "./EcommerceRoutes";
+import Profile from "../pages/Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -37,12 +39,11 @@ const MainNavigation = () => {
 				initialRouteName={"Login"}
 			>
 				<Stack.Screen name="Login" component={Login} />
-				<Stack.Screen name="HomeTabNavigations" component={TabNavigator}/>
-				<Stack.Screen
-					name="Doctor"
-					component={Doctors}
-				/>
+				<Stack.Screen name="HomeTabNavigations" component={TabNavigator} />
+				<Stack.Screen name="Doctor" component={Doctors} />
 				<Stack.Screen name="Wallets" component={Wallets} />
+				<Stack.Screen name="Profile" component={Profile} />
+				<Stack.Screen name="EcommerceRoutes" component={EcommerceRoutes} />
 			</Stack.Navigator>
 		</NavigationContainer>
 	);

@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from "react";
-import {View, Text, FlatList, Platform, TouchableOpacity, Image} from "react-native";
-import NavBar from '../components/NavBar'
-import {Swipeable} from "react-native-gesture-handler";
+import React, { useEffect, useState } from "react";
+import { FlatList, Image, Platform, Text, TouchableOpacity, View } from "react-native";
+import { Swipeable } from "react-native-gesture-handler";
 import Cat from '../assets/images/cat.jpg';
+import NavBar from '../components/NavBar';
 
 const NotificationCard = ({viewed,title, description, date}) => {
 	const [time, setTime] = useState(date);
@@ -44,6 +44,7 @@ const NotificationCard = ({viewed,title, description, date}) => {
 					<Text className="text-sm text-wrap">{description}</Text>
 				</View>
 			</View>
+			<View className="w-full border-slate-500 ml-5 rounded-full border-b"></View>
 		</Swipeable>
 	);
 };
@@ -55,7 +56,7 @@ const Notifications = ({navigation}) => {
 			description:
 				"Don't forget your appointment tomorrow tomorrow tomorrow tomorrow tomorrow at 10 AM.",
 			date: 22,
-			viewed: true,
+			viewed: false,
 		},
 		{
 			title: "Vaccination Update",
@@ -73,7 +74,7 @@ const Notifications = ({navigation}) => {
 			title: "Vaccination Update",
 			description: "Your pet has received the required vaccinations.",
 			date: 59,
-			viewed: true,
+			viewed: false,
 		},
 		{
 			title: "Vaccination Update",
@@ -84,7 +85,7 @@ const Notifications = ({navigation}) => {
 	]);
   
   return (
-        <>
+		<View className="bg-slate-100">
 			<NavBar
 				title="Notifications"
 				bg_color_text="black"
@@ -92,24 +93,26 @@ const Notifications = ({navigation}) => {
 				showBackButton={false}
 			/>
 			<View className="flex flex-col h-screen">
-				  <View className="flex flex-col bg-red-80 flex-1">
+				<View className="flex flex-col bg-red-80 flex-1">
 					<FlatList
 						data={notifications}
 						renderItem={({item}) => (
-              <NotificationCard
-                viewed={item.viewed}
+							<NotificationCard
+								viewed={item.viewed}
 								title={item.title}
 								description={item.description}
 								date={item.date}
 							/>
 						)}
 						keyExtractor={(item, index) => index.toString()}
-						contentContainerStyle={{ paddingBottom: Platform.OS === "ios" ? '45%' : '15%' }}
+						contentContainerStyle={{
+							paddingBottom: Platform.OS === "ios" ? "45%" : "15%",
+						}}
 						showsVerticalScrollIndicator={false}
 					/>
 				</View>
-      </View>
-      </>
+			</View>
+		</View>
 	);
 }
 

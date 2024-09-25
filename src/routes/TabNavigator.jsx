@@ -2,23 +2,24 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
 import { Text, TouchableOpacity, View, Platform } from "react-native";
 import Home from "../pages/Home";
-import Profile from "../pages/Profile";
+import ProfileSettingsMenu from "../pages/ProfileSettings";
 import Icon, { Icons } from "../utilities/Icons";
 import Notifications from "../pages/Notifications";
 import Appointments from "../pages/Appointments";
 import ProductListing from "../pages/ProductListing";
+import MenuRoutes from "./MenuRoutes";
 
 const Tab = createBottomTabNavigator();
 
 const Tabs = [
 	{
-		route: "Profile",
-		label: "Profile",
-		inActiveType: Icons.AntDesign,
-		inActiveIconName: "user",
+		route: "Menu",
+		label: "Menu",
+		inActiveType: Icons.EvilIcons,
+		inActiveIconName: "gear",
 		activeType: Icons.FontAwesome,
-		activeIconName: "user",
-		component: Profile,
+		activeIconName: "gear",
+		component: MenuRoutes,
 		badge: false,
 	},
 	{

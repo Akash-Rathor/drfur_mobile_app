@@ -13,24 +13,22 @@ const Value = StatusBar.currentHeight / 16;
 
 const NavBar = ({
 	bg_color,
-	bg_color_text='white',
+	bg_color_text = "white",
 	navigation,
 	title = null,
-	goBackWhere='Home',
-    initialBackToLogin = false,
+	goBackWhere = undefined,
+	initialBackToLogin = false,
 	showBackButton = true,
 	showProfileButton = true,
-	isProfilePage = false,
+	showProfileIcon = true,
 }) => {
 	const handNavigationGoBack = () => {
 		if (initialBackToLogin) {
 			navigation.reset({index: 0, routes: [{name: "Login"}]});
 		} else {
 			if (goBackWhere) {
-				
 				navigation.navigate(goBackWhere);
-			}
-			else {
+			} else {
 				navigation.goBack(null);
 			}
 		}
@@ -73,13 +71,8 @@ const NavBar = ({
 			{showProfileButton && (
 				<TouchableOpacity
 					className="absolute right-2 w-8 h-8 rounded-md"
-					onPress={isProfilePage ? moveToWallets : () => navigation.navigate("Profile")}
-				>
-					{isProfilePage ? (
-						<Icon type={Icons.Entypo} name="wallet" color="green" size={28} />
-					) : (
-						<Image source={Cat} className="w-full h-full rounded-md bg-white" />
-					)}
+					onPress={() => navigation.navigate("Profile")}>
+					{showProfileIcon && <Image source={Cat} className="w-full h-full rounded-md bg-white" />}
 				</TouchableOpacity>
 			)}
 		</View>

@@ -1,16 +1,14 @@
-import React, {useState, useEffect} from "react";
+import React, { useEffect, useState } from "react";
 import {
-	View,
-	Text,
-	FlatList,
-	Platform,
-	TouchableOpacity,
-	Image,
-  Button,
+  FlatList,
+  Image,
+  Platform,
+  Text,
+  TouchableOpacity,
+  View
 } from "react-native";
-import NavBar from "../components/NavBar";
-import {Swipeable} from "react-native-gesture-handler";
 import Cat from "../assets/images/cat.jpg";
+import NavBar from "../components/NavBar";
 
 const NotificationCard = ({viewed, title, description, date, navigation}) => {
 	const [time, setTime] = useState(date);
@@ -66,6 +64,7 @@ const NotificationCard = ({viewed, title, description, date, navigation}) => {
 						</TouchableOpacity> */}
 					</View>
 				</View>
+				<View className="w-full border-slate-500 ml-5 rounded-full border-b" />
 			</View>
 			{/* </Swipeable> */}
 		</TouchableOpacity>
@@ -115,17 +114,17 @@ const Appointments = ({navigation}) => {
 				navigation={navigation}
 				showBackButton={false}
 			/>
-			<View className="flex flex-col h-screen">
+			<View className="flex flex-col h-screen bg-slate-100">
 				<View className="flex flex-col bg-red-80 flex-1">
 					<FlatList
 						data={notifications}
 						renderItem={({item}) => (
 							<NotificationCard
-                viewed={item.viewed}
-                title={item.title}
-                description={item.description}
-                date={item.date}
-                navigation={navigation}
+								viewed={item.viewed}
+								title={item.title}
+								description={item.description}
+								date={item.date}
+								navigation={navigation}
 							/>
 						)}
 						keyExtractor={(item, index) => index.toString()}
