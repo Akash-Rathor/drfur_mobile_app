@@ -37,6 +37,13 @@
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+		<key>NSCameraUsageDescription</key>
+		<string>We need access to your camera to take pictures.</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>We need access to your photo library to select pictures.</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>We need access to save pictures to your photo library.</string>
+
 	<key>UIAppFonts</key>
     <array>
         <string>AntDesign.ttf</string>
