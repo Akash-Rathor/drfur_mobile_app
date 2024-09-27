@@ -1,5 +1,10 @@
 import React from "react";
-import { Platform, SafeAreaView, StatusBar } from "react-native";
+import {
+	Platform,
+	SafeAreaView,
+	StatusBar,
+	KeyboardAvoidingView,
+} from "react-native";
 import "react-native-gesture-handler";
 import MainNavigation from "./src/routes/MainNavigation";
 

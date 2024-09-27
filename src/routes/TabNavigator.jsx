@@ -15,10 +15,10 @@ const Tabs = [
 	{
 		route: "Menu",
 		label: "Menu",
-		inActiveType: Icons.EvilIcons,
-		inActiveIconName: "gear",
-		activeType: Icons.FontAwesome,
-		activeIconName: "gear",
+		inActiveType: Icons.Entypo,
+		inActiveIconName: "menu",
+		activeType: Icons.MaterialCommunityIcons,
+		activeIconName: "menu-open",
 		component: MenuRoutes,
 		badge: false,
 	},
@@ -75,17 +75,17 @@ const TabButton = (props) => {
 			activeOpacity={1}
 			style={{
 				width: 72,
-				height: Platform.OS === "ios" ? 40 : 44,
+				height: Platform.OS === "ios" ? 40 : 46,
 				alignItems: "center",
 				position: "relative",
 			}}
 		>
 			{/* Line above the icon with rounded bottom */}
 			<View
-				className={`w-12 h-1.5 ${focused ? "bg-firstprimary border-b rounded-b-full opacity-80" : "bg-transparent"}`}
-			/>
+				className={`w-12 ${focused ? "bg-firstprimary border-b rounded-b-full opacity-80" : "bg-transparent"}`}
+				style={{height:3.5}} />
 
-			{/* Icon */}
+			
 			<View className="mt-1" />
 			{item.badge && (
 				<View
@@ -128,7 +128,7 @@ export default function TabNavigator() {
 			screenOptions={{
 				headerShown: false,
 				tabBarStyle: {
-					height: Platform.OS === "ios" ? 40 : 48,
+					height: Platform.OS === "ios" ? 40 : 50,
 					position: "absolute",
 					justifyContent: "space-between",
 					alignItems: "center",

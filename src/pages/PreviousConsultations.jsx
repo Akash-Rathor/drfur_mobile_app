@@ -42,7 +42,7 @@ const PetCard = ({doctor, inPerson, pet, doctorImage, consultationDate, navigati
 					<View className="flex flex-row justify-between">
 						<View className="flex flex-col">
 							<Text className="font-semibold">{pet}</Text>
-							<Text className="font-semibold text-slate-500">({doctor})</Text>
+							<Text className="font-semibold text-slate-500 text-xs">({doctor})</Text>
 						</View>
 
 						<View className="flex flex-row">
