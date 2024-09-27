@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from "react";
+import React, {useEffect, useState, useRef, memo} from "react";
 import {
 	Image,
 	KeyboardAvoidingView,
@@ -14,6 +14,45 @@ import NavBar from "../components/NavBar";
 import Icon, {Icons} from "../utilities/Icons";
 import {DatePickerComponnet} from "../components/utilityComponents/DatePickerComponent";
 import ImagePicker from "../components/utilityComponents/ImagePicker";
+import EditableInputField from "../components/utilityComponents/EditableInputField";
+
+const EditableField = memo(({
+	label,
+	value,
+	onChangeText,
+	keyboardType = "default",
+	autoFocus = false, // New prop to handle autofocus
+	refInput = null, // New prop to pass ref
+}) => {
+	return (
+		<View className="mb-4">
+			<Text className="text-gray-600 mb-1">{label}</Text>
+			{value !== undefined && typeof value === 'boolean' ? (
+				// Handle non-text fields if necessary
+				<Text className="text-black text-md">{value ? "Yes" : "No"}</Text>
+			) : (
+				<>
+					{onChangeText ? (
+						<TextInput
+							ref={refInput} // Assign ref to TextInput
+							value={value}
+							onChangeText={onChangeText}
+							className="text-black border-b border-gray-300 py-1"
+							keyboardType={keyboardType}
+							autoFocus={autoFocus} // Use the autoFocus prop
+							returnKeyType="done"
+							onSubmitEditing={() => {
+								// Optionally handle submit
+							}}
+						/>
+					) : (
+						<Text className="text-black text-md">{value}</Text>
+					)}
+				</>
+			)}
+		</View>
+	);
+});
 
 const Profile = ({navigation, editable = true}) => {
 	const [date, setDate] = useState(new Date());
@@ -30,6 +69,7 @@ const Profile = ({navigation, editable = true}) => {
 	});
 
 	const [isEditing, setIsEditing] = useState(false);
+	const firstInputRef = useRef(null); // Ref for the first input field
 
 	const handleEdit = () => {
 		setIsEditing(true);
@@ -50,27 +90,6 @@ const Profile = ({navigation, editable = true}) => {
 		refRBSheet.current.open();
 	};
 
-	const EditableField = ({
-		label,
-		value,
-		onChangeText,
-		keyboardType = "default",
-	}) => (
-		<View className="mb-4">
-			<Text className="text-gray-600 mb-1">{label}</Text>
-			{isEditing ? (
-				<TextInput
-					value={value}
-					onChangeText={onChangeText}
-					className="text-black border-b border-gray-300 py-1"
-					keyboardType={keyboardType}
-				/>
-			) : (
-				<Text className="text-black text-md">{value}</Text>
-			)}
-		</View>
-	);
-
 	useEffect(() => {
 		const checkImagePicker = async () => {
 			if (!launchImageLibrary || !launchCamera) {
@@ -80,13 +99,19 @@ const Profile = ({navigation, editable = true}) => {
 		checkImagePicker();
 	}, []);
 
+	useEffect(() => {
+		if (isEditing && firstInputRef.current) {
+			firstInputRef.current.focus();
+		}
+	}, [isEditing]);
+
 	return (
 		<KeyboardAvoidingView
 			behavior={Platform.OS === "ios" ? "padding" : "height"}
-			className="flex-1"
-			keyboardVerticalOffset={Platform.OS === "ios" ? 100 : 0}
+			className="flex-1 bg-black"
+			// keyboardVerticalOffset={Platform.OS === "ios" ? 0 : 0}
 		>
-			<View className="flex flex-1 flex-col h-screen bg-slate-100">
+			<View className="flex flex-1 flex-col h-screen bg-white">
 				<NavBar
 					title="Profile"
 					bg_color_text="black"
@@ -94,7 +119,7 @@ const Profile = ({navigation, editable = true}) => {
 					showBackButton={true}
 					showProfileIcon={false}
 				/>
-				<ScrollView contentContainerStyle={{flexGrow: 1}}>
+				<ScrollView contentContainerStyle={{flexGrow: 1}} className="bg-white mb-20">
 					<View className="flex flex-col items-center justify-start pt-8 pb-4">
 						<View
 							className="relative"
@@ -126,10 +151,12 @@ const Profile = ({navigation, editable = true}) => {
 							/>
 						</View>
 						{isEditing ? (
-							<EditableField
+							<EditableInputField
 								value={profileData.name}
 								onChangeText={(text) => handleChange("name", text)}
 								className="text-2xl font-bold mb-2 text-center"
+								autoFocus={true} // Autofocus the first field
+								refInput={firstInputRef} // Assign ref to the first input
 							/>
 						) : (
 							<Text className="text-2xl font-bold mb-2">
@@ -137,7 +164,7 @@ const Profile = ({navigation, editable = true}) => {
 							</Text>
 						)}
 						{isEditing ? (
-							<EditableField
+							<EditableInputField
 								value={profileData.email}
 								onChangeText={(text) => handleChange("email", text)}
 								className="text-gray-600 mb-6 text-center"
@@ -160,13 +187,13 @@ const Profile = ({navigation, editable = true}) => {
 								</TouchableOpacity>
 							)}
 						</View>
-						<EditableField
+						<EditableInputField
 							label="Phone"
 							value={profileData.phone}
 							onChangeText={(text) => handleChange("phone", text)}
 							keyboardType="phone-pad"
 						/>
-						<EditableField
+						<EditableInputField
 							label="Address"
 							value={profileData.address}
 							onChangeText={(text) => handleChange("address", text)}
@@ -188,7 +215,7 @@ const Profile = ({navigation, editable = true}) => {
 								</TouchableOpacity>
 							</View>
 						) : (
-							<EditableField
+							<EditableInputField
 								label="Date of Birth"
 								value={profileData.dob}
 								editable={false}
