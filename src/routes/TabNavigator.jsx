@@ -1,12 +1,11 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import React from "react";
-import { Text, TouchableOpacity, View, Platform } from "react-native";
-import Home from "../pages/Home";
-import ProfileSettingsMenu from "../pages/ProfileSettings";
-import Icon, { Icons } from "../utilities/Icons";
-import Notifications from "../pages/Notifications";
+import { Platform, Text, TouchableOpacity, View } from "react-native";
 import Appointments from "../pages/Appointments";
+import Home from "../pages/Home";
+import Notifications from "../pages/Notifications";
 import ProductListing from "../pages/ProductListing";
+import Icon, { Icons } from "../utilities/Icons";
 import MenuRoutes from "./MenuRoutes";
 
 const Tab = createBottomTabNavigator();

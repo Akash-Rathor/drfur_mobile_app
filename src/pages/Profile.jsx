@@ -54,22 +54,20 @@ const EditableField = memo(({
 	);
 });
 
-const Profile = ({navigation, editable = true}) => {
+const Profile = ({ navigation, route }) => {
+	const {
+		editable = true,
+		type = "Personal",
+		ProfileData = undefined
+	} = route.params || {};
+
 	const [date, setDate] = useState(new Date());
 	const [open, setOpen] = useState(false);
 	const refRBSheet = useRef();
 
-	const [profileData, setProfileData] = useState({
-		name: "John Doe",
-		email: "johndoe@gmail.com",
-		phone: "+1 234 567 8900",
-		address: "123 Main St, City, Country",
-		dob: "January 1, 1990",
-		image: require("../assets/images/cat.jpg"),
-	});
-
+	const [profileData, setProfileData] = useState(ProfileData);
 	const [isEditing, setIsEditing] = useState(false);
-	const firstInputRef = useRef(null); // Ref for the first input field
+	const firstInputRef = useRef(null);
 
 	const handleEdit = () => {
 		setIsEditing(true);
@@ -119,7 +117,10 @@ const Profile = ({navigation, editable = true}) => {
 					showBackButton={true}
 					showProfileIcon={false}
 				/>
-				<ScrollView contentContainerStyle={{flexGrow: 1}} className="bg-white mb-20">
+				<ScrollView
+					contentContainerStyle={{flexGrow: 1}}
+					className="bg-white mb-20"
+				>
 					<View className="flex flex-col items-center justify-start pt-8 pb-4">
 						<View
 							className="relative"
@@ -163,16 +164,17 @@ const Profile = ({navigation, editable = true}) => {
 								{profileData.name}
 							</Text>
 						)}
-						{isEditing ? (
-							<EditableInputField
-								value={profileData.email}
-								onChangeText={(text) => handleChange("email", text)}
-								className="text-gray-600 mb-6 text-center"
-								keyboardType="email-address"
-							/>
-						) : (
-							<Text className="text-gray-600 mb-6">{profileData.email}</Text>
-						)}
+						{profileData.email &&
+							(isEditing ? (
+								<EditableInputField
+									value={profileData.email}
+									onChangeText={(text) => handleChange("email", text)}
+									className="text-gray-600 mb-6 text-center"
+									keyboardType="email-address"
+								/>
+							) : (
+								<Text className="text-gray-600 mb-6">{profileData.email}</Text>
+							))}
 					</View>
 					<View className="bg-white rounded-t-3xl flex-1 px-6 pt-6">
 						<View className="flex flex-row justify-between items-center mb-4">
@@ -187,16 +189,20 @@ const Profile = ({navigation, editable = true}) => {
 								</TouchableOpacity>
 							)}
 						</View>
-						<EditableInputField
-							label="Phone"
-							value={profileData.phone}
-							onChangeText={(text) => handleChange("phone", text)}
-							keyboardType="phone-pad"
-						/>
+						{profileData.phone && (
+							<EditableInputField
+								label="Phone"
+								value={profileData.phone}
+								onChangeText={(text) => handleChange("phone", text)}
+								keyboardType="phone-pad"
+								editable={isEditing}
+							/>
+						)}
 						<EditableInputField
 							label="Address"
 							value={profileData.address}
 							onChangeText={(text) => handleChange("address", text)}
+							editable={isEditing}
 						/>
 						{isEditing ? (
 							<View>
@@ -218,7 +224,7 @@ const Profile = ({navigation, editable = true}) => {
 							<EditableInputField
 								label="Date of Birth"
 								value={profileData.dob}
-								editable={false}
+								editable={isEditing}
 							/>
 						)}
 					</View>

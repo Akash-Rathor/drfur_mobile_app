@@ -13,6 +13,7 @@ export default EditableInputField = memo(
 		keyboardType = "default",
 		autoFocus = false,
 		refInput = null,
+		editable=true
 	}) => {
 		return (
 			<View className="mb-4">
@@ -30,8 +31,8 @@ export default EditableInputField = memo(
 								keyboardType={keyboardType}
 								autoFocus={autoFocus}
 								returnKeyType="done"
-								onSubmitEditing={() => {
-								}}
+								onSubmitEditing={() => {}}
+								editable={editable}
 							/>
 						) : (
 							<Text className="text-black text-md">{value}</Text>

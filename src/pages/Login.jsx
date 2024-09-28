@@ -2,12 +2,27 @@ import React, { useEffect } from "react";
 import { StatusBar, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { setStatusbarColor } from "../../redux/reducer";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Vet from "../assets/images/vet.png";
 
 const Login = ({ navigation }) => {
   const dispatch = useDispatch();
 
-  const navigateToHome = () => {
-    console.log("Navigating to Home");
+  const navigateToHome = async() => {
+
+    await AsyncStorage.setItem("token",'alphabetagamma');
+    const userInfo = {
+			name: "Akash Rathor",
+			type: "Personal",
+      image: Vet,
+      editable: true,
+			dob: "2024-01-01",
+      id: 2,
+      email: "akashrathor@gmail.com",
+      phone: "8587094760",
+      address: "New Delhi, India",
+		};
+    await AsyncStorage.setItem('userInfo',JSON.stringify(userInfo));
     navigation.navigate("HomeTabNavigations");
   };
 

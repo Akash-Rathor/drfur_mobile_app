@@ -1,11 +1,11 @@
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
-import MyPets from "../pages/MyPets";
-import MedicalRecords from "../pages/MedicalRecords";
-import Profile from "../pages/Profile";
-import ProfileSettingsMenu from "../pages/ProfileSettings";
-import PreviousConsultations from "../pages/PreviousConsultations";
 import Doctors from "../pages/Doctors";
+import MedicalRecords from "../pages/MedicalRecords";
+import MyPets from "../pages/MyPets";
+import PreviousConsultations from "../pages/PreviousConsultations";
+import Profile from "../pages/Profile";
+import Menu from "../pages/Menu";
 const Stack = createNativeStackNavigator();
 
 const MenuRoutes = ({route}) => {
@@ -18,7 +18,7 @@ const MenuRoutes = ({route}) => {
 		>
 			<Stack.Screen
 				name="ProfileSettings"
-				component={ProfileSettingsMenu}
+				component={Menu}
 				initialParams={{item}}
 			/>
 			<Stack.Screen name="MyPets" component={MyPets} initialParams={{item}} />

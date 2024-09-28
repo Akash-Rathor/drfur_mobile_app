@@ -8,7 +8,7 @@ import {
 import NavBar from "../components/NavBar";
 import Icon, { Icons } from "../utilities/Icons";
 
-const ProfileItem = ({title, icon, route,navigation}) => {
+const MenuItem = ({title, icon, route,navigation}) => {
 	return (
 		<TouchableOpacity
 			onPress={() => navigation.navigate(route)}
@@ -36,19 +36,19 @@ const ProfileItem = ({title, icon, route,navigation}) => {
 };
 
 const ProfileTabs = [
-	{
-		title: "My Profile",
-		icon: (
-			<Icon
-				type={Icons.AntDesign}
-				name="user"
-				color="#03346E"
-				size={20}
-				className="ml-2"
-			/>
-		),
-		route: "Profile",
-	},
+	// {
+	// 	title: "My Profile",
+	// 	icon: (
+	// 		<Icon
+	// 			type={Icons.AntDesign}
+	// 			name="user"
+	// 			color="#03346E"
+	// 			size={20}
+	// 			className="ml-2"
+	// 		/>
+	// 	),
+	// 	route: "Profile",
+	// },
 	{
 		title: "My Pets",
 		icon: (
@@ -103,7 +103,7 @@ const ProfileTabs = [
 	},
 ];
 
-const ProfileSettingsMenu = ({ navigation }) => {
+const Menu = ({ navigation }) => {
 	
 	return (
 		<View className="flex flex-col h-screen bg-slate-100">
@@ -127,7 +127,7 @@ const ProfileSettingsMenu = ({ navigation }) => {
 					<FlatList
 						data={ProfileTabs}
 						renderItem={({item}) => (
-							<ProfileItem
+							<MenuItem
 								title={item.title}
 								icon={item.icon}
 								route={item.route}
@@ -141,4 +141,4 @@ const ProfileSettingsMenu = ({ navigation }) => {
 	);
 };
 
-export default ProfileSettingsMenu;
+export default Menu;

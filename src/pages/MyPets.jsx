@@ -26,12 +26,20 @@ const calculateAge = (dob) => {
 	return {years, months};
 };
 
-const PetCard = ({navigation,name, type, image, dob}) => {
-
+const PetCard = ({ navigation, item }) => {
+	const {name, type, image, dob, id} = item;
 	const {years, months} = calculateAge(dob);
 
 	return (
-		<TouchableOpacity onPress={() => navigation.navigate("Home")}>
+		<TouchableOpacity
+			onPress={() =>
+				navigation.navigate("Profile", {
+					ProfileData: item,
+					editable: true,
+					type: "Pet",
+				})
+			}
+		>
 			<View className={`flex flex-row justify-start items-center p-2 bg-white`}>
 				<Image source={image} className="w-12 h-12 rounded-md mr-2 bg-white" />
 				<View className="flex flex-col mr-2 flex-1">
@@ -57,12 +65,14 @@ const MyPets = ({navigation}) => {
 			type: "Dog",
 			image: Dog,
 			dob: "2024-01-01",
+			id:1,
 		},
 		{
 			name: "Pluffy",
 			type: "Cat",
 			image: Cat,
 			dob: "2020-01-01",
+			id:2,
 		},
 	]);
 
@@ -81,10 +91,7 @@ const MyPets = ({navigation}) => {
 						renderItem={({item}) => (
 							<PetCard
 								navigation={navigation}
-								name={item.name}
-								type={item.type}
-								image={item.image}
-								dob={item.dob}
+								item={item}
 							/>
 						)}
 						keyExtractor={(item, index) => index.toString()}

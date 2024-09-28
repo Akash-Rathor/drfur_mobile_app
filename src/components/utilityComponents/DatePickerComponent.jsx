@@ -1,20 +1,17 @@
 import React from "react";
 import DatePicker from "react-native-date-picker";
+
 const DatePickerComponnet = ({open, setOpen, date, setDate, handleChange}) => {
 	return (
 		<DatePicker
 			modal
 			open={open}
 			date={date}
-			mode="date" // Set the mode to date to only show year, month, and date
+			mode="date"
 			onConfirm={(date) => {
 				setOpen(false);
 				setDate(date);
-				const formattedDate = date.toLocaleDateString("en-US", {
-					year: "numeric",
-					month: "long",
-					day: "numeric",
-				});
+				const formattedDate = date.toISOString().split('T')[0]; // Format as YYYY-MM-DD
 				handleChange("dob", formattedDate);
 			}}
 			onCancel={() => {
@@ -36,14 +33,11 @@ const DateTimePickerComponnet = ({
 			modal
 			open={open}
 			date={date}
+			mode="datetime"
 			onConfirm={(date) => {
 				setOpen(false);
 				setDate(date);
-				const formattedDate = date.toLocaleDateString("en-US", {
-					year: "numeric",
-					month: "long",
-					day: "numeric",
-				});
+				const formattedDate = date.toISOString().slice(0, 16).replace('T', ' ');
 				handleChange("dob", formattedDate);
 			}}
 			onCancel={() => {
