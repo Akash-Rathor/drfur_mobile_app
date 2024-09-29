@@ -7,7 +7,7 @@ const Wallets = ({ navigation }) => {
 	return (
 		<View>
 			<NavBar
-				title="Wallets"
+				title="Wallet"
 				navigation={navigation}
 				bg_color_text="black"
 				showBackButton={true}

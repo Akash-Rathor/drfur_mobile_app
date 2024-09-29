@@ -12,13 +12,13 @@ const Tab = createBottomTabNavigator();
 
 const Tabs = [
 	{
-		route: "Menu",
-		label: "Menu",
-		inActiveType: Icons.Entypo,
-		inActiveIconName: "menu",
-		activeType: Icons.MaterialCommunityIcons,
-		activeIconName: "menu-open",
-		component: MenuRoutes,
+		route: "Home",
+		label: "Home",
+		inActiveType: Icons.AntDesign,
+		inActiveIconName: "home",
+		activeType: Icons.FontAwesome,
+		activeIconName: "home",
+		component: Home,
 		badge: false,
 	},
 	{
@@ -31,26 +31,16 @@ const Tabs = [
 		component: Appointments,
 		badge: true,
 	},
-	{
-		route: "Home",
-		label: "Home",
-		inActiveType: Icons.AntDesign,
-		inActiveIconName: "home",
-		activeType: Icons.FontAwesome,
-		activeIconName: "home",
-		component: Home,
-		badge: false,
-	},
-	{
-		route: "Products",
-		label: "Products",
-		inActiveType: Icons.AntDesign,
-		inActiveIconName: "shoppingcart",
-		activeType: Icons.FontAwesome5,
-		activeIconName: "shopping-cart",
-		component: ProductListing,
-		badge: false,
-	},
+	// {
+	// 	route: "Products",
+	// 	label: "Products",
+	// 	inActiveType: Icons.AntDesign,
+	// 	inActiveIconName: "shoppingcart",
+	// 	activeType: Icons.FontAwesome5,
+	// 	activeIconName: "shopping-cart",
+	// 	component: ProductListing,
+	// 	badge: false,
+	// },
 	{
 		route: "Notifications",
 		label: "Notifications",
@@ -60,6 +50,16 @@ const Tabs = [
 		activeIconName: "bell",
 		component: Notifications,
 		badge: true,
+	},
+	{
+		route: "Menu",
+		label: "Menu",
+		inActiveType: Icons.Entypo,
+		inActiveIconName: "menu",
+		activeType: Icons.MaterialCommunityIcons,
+		activeIconName: "menu-open",
+		component: MenuRoutes,
+		badge: false,
 	},
 ];
 
@@ -73,7 +73,7 @@ const TabButton = (props) => {
 			onPress={onPress}
 			activeOpacity={1}
 			style={{
-				width: 72,
+				width: Tabs.length === 4 ? Tabs.length * 25 : Tabs.length === 5 ? Tabs.length * 15 : Tabs.length * 10,
 				height: Platform.OS === "ios" ? 40 : 46,
 				alignItems: "center",
 				position: "relative",
@@ -82,9 +82,9 @@ const TabButton = (props) => {
 			{/* Line above the icon with rounded bottom */}
 			<View
 				className={`w-12 ${focused ? "bg-firstprimary border-b rounded-b-full opacity-80" : "bg-transparent"}`}
-				style={{height:3.5}} />
+				style={{height: 3.5}}
+			/>
 
-			
 			<View className="mt-1" />
 			{item.badge && (
 				<View
@@ -108,14 +108,12 @@ const TabButton = (props) => {
 				size={20}
 			/>
 
-
-				<Text
-					className={`${focused ? "text-firstprimary font-semibold opacity-80" : "text-[#999996]"}`}
-					style={{fontSize: 10}}
-				>
-					{item.label}
-				</Text>
-
+			<Text
+				className={`${focused ? "text-firstprimary font-semibold opacity-80" : "text-[#999996]"}`}
+				style={{fontSize: 10}}
+			>
+				{item.label}
+			</Text>
 		</TouchableOpacity>
 	);
 };
