@@ -16,47 +16,10 @@ import {DatePickerComponnet} from "../components/utilityComponents/DatePickerCom
 import ImagePicker from "../components/utilityComponents/ImagePicker";
 import EditableInputField from "../components/utilityComponents/EditableInputField";
 
-const EditableField = memo(({
-	label,
-	value,
-	onChangeText,
-	keyboardType = "default",
-	autoFocus = false, // New prop to handle autofocus
-	refInput = null, // New prop to pass ref
-}) => {
-	return (
-		<View className="mb-4">
-			<Text className="text-gray-600 mb-1">{label}</Text>
-			{value !== undefined && typeof value === 'boolean' ? (
-				// Handle non-text fields if necessary
-				<Text className="text-black text-md">{value ? "Yes" : "No"}</Text>
-			) : (
-				<>
-					{onChangeText ? (
-						<TextInput
-							ref={refInput} // Assign ref to TextInput
-							value={value}
-							onChangeText={onChangeText}
-							className="text-black border-b border-gray-300 py-1"
-							keyboardType={keyboardType}
-							autoFocus={autoFocus} // Use the autoFocus prop
-							returnKeyType="done"
-							onSubmitEditing={() => {
-								// Optionally handle submit
-							}}
-						/>
-					) : (
-						<Text className="text-black text-md">{value}</Text>
-					)}
-				</>
-			)}
-		</View>
-	);
-});
 
 const Profile = ({ navigation, route }) => {
 	const {
-		editable = true,
+		editable = false,
 		type = "Personal",
 		ProfileData = undefined
 	} = route.params || {};
@@ -179,7 +142,7 @@ const Profile = ({ navigation, route }) => {
 					<View className="bg-white rounded-t-3xl flex-1 px-6 pt-6">
 						<View className="flex flex-row justify-between items-center mb-4">
 							<Text className="text-lg font-semibold">
-								Personal Information
+								{type === "Pet" ? "Pet Infromation" : "Personal Information"}
 							</Text>
 							{editable && (
 								<TouchableOpacity onPress={isEditing ? handleSave : handleEdit}>
@@ -226,6 +189,20 @@ const Profile = ({ navigation, route }) => {
 								value={profileData.dob}
 								editable={isEditing}
 							/>
+						)}
+						{type === "Pet" && (
+							<TouchableOpacity
+								className="flex flex-row justify-between items-center h-10 bg-slate-400 p-2 mt-2 rounded-md"
+								onPress={() => navigation.navigate("Prescriptions")}
+							>
+								<Text className="text-white font-semibold">Prescriptions</Text>
+								<Icon
+									type={Icons.Feather}
+									name="chevron-right"
+									size={16}
+									color="white"
+								/>
+							</TouchableOpacity>
 						)}
 					</View>
 				</ScrollView>

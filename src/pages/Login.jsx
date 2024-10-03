@@ -15,7 +15,7 @@ const Login = ({ navigation }) => {
 			name: "Akash Rathor",
 			type: "Personal",
       image: Vet,
-      editable: true,
+      editable: false,
 			dob: "2024-01-01",
       id: 2,
       email: "akashrathor@gmail.com",

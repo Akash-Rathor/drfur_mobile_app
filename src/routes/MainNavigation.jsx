@@ -11,6 +11,7 @@ import Wallets from "../pages/Wallets";
 import Doctors from "../pages/Doctors";
 import EcommerceRoutes from "./EcommerceRoutes";
 import Profile from "../pages/Profile";
+import Prescriptions from "../pages/Prescriptions";
 
 const Stack = createNativeStackNavigator();
 
@@ -43,6 +44,7 @@ const MainNavigation = () => {
 				<Stack.Screen name="Doctor" component={Doctors} />
 				<Stack.Screen name="Wallets" component={Wallets} />
 				<Stack.Screen name="Profile" component={Profile} />
+				<Stack.Screen name="Prescriptions" component={Prescriptions} />
 				<Stack.Screen name="EcommerceRoutes" component={EcommerceRoutes} />
 			</Stack.Navigator>
 		</NavigationContainer>
